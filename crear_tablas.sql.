@@ -1,0 +1,44 @@
+-- Creación de la base de datos: Sistema de Desarrollo Personal
+
+CREATE TABLE IF NOT EXISTS registro_diario (
+    id_registro INTEGER PRIMARY KEY AUTOINCREMENT,
+    fecha DATE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS academica (
+    id_academico INTEGER PRIMARY KEY AUTOINCREMENT,
+    fecha DATE,
+    materia VARCHAR(100),
+    horas_estudio DECIMAL(4,2),
+    calificacion DECIMAL(4,2),
+    id_registro INTEGER,
+    FOREIGN KEY (id_registro) REFERENCES registro_diario(id_registro)
+);
+
+CREATE TABLE IF NOT EXISTS sueno (
+    id_sueno INTEGER PRIMARY KEY AUTOINCREMENT,
+    fecha DATE,
+    horas_dormidas DECIMAL(4,2),
+    calidad_sueno INTEGER,
+    id_registro INTEGER,
+    FOREIGN KEY (id_registro) REFERENCES registro_diario(id_registro)
+);
+
+CREATE TABLE IF NOT EXISTS estado_emocional (
+    id_estado INTEGER PRIMARY KEY AUTOINCREMENT,
+    fecha DATE,
+    nivel_estres INTEGER,
+    estado_animo VARCHAR(50),
+    id_registro INTEGER,
+    FOREIGN KEY (id_registro) REFERENCES registro_diario(id_registro)
+);
+
+CREATE TABLE IF NOT EXISTS finanzas (
+    id_finanza INTEGER PRIMARY KEY AUTOINCREMENT,
+    fecha DATE,
+    tipo VARCHAR(20),
+    monto DECIMAL(10,2),
+    descripcion VARCHAR(200),
+    id_registro INTEGER,
+    FOREIGN KEY (id_registro) REFERENCES registro_diario(id_registro)
+);
